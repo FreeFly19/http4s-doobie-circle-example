@@ -12,6 +12,8 @@ object Main extends StreamApp[IO] {
 
   val service = HttpService[IO] {
     case GET -> Root => Ok("Home Page")
+    case GET -> Root / "name" / name => Ok(s"Home $name")
+    case _ -> url => NotFound(s"Sorry, but there is no handler for $url url!")
   }
 
   override def stream(args: List[String], requestShutdown: IO[Unit]): Stream[IO, ExitCode] =
