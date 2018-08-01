@@ -6,9 +6,9 @@ import org.http4s.circe._
 import org.http4s.dsl.io._
 
 class PersonService {
-  case class Human(name: String, age: Int)
+  case class Person(name: String, age: Int)
 
   val service: HttpService[IO] = HttpService[IO]{
-    case req @ POST -> Root => Ok(req.decodeJson[Human].map(_.asJson))
+    case req @ POST -> Root => Ok(req.decodeJson[Person].map(_.asJson))
   }
 }
