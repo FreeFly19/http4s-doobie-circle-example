@@ -17,3 +17,8 @@ libraryDependencies ++= Seq(
 )
 
 scalacOptions ++= Seq("-Ypartial-unification")
+
+assemblyMergeStrategy in assembly := {
+  case PathList("META-INF", xs @ _*) => MergeStrategy.discard
+  case x => MergeStrategy.first
+}
