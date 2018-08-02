@@ -8,7 +8,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 
 object Main extends StreamApp[IO] {
   val homeService = new HomeService()
-  val personService = new PersonService()
+  val personService = new PersonService(new InMemoryPersonRepository)
 
   override def stream(args: List[String], requestShutdown: IO[Unit]): Stream[IO, ExitCode] =
     BlazeBuilder[IO]
